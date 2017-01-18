@@ -14,21 +14,21 @@ Usage
 
 Just load the internal file system module:
 
-import (
-    "github.com/childoftehuniverse/filesystem"
-    _ "github.com/childoftehuniverse/filesystem-internal"
-)
+    import (
+        "github.com/childoftehuniverse/filesystem"
+        _ "github.com/childoftehuniverse/filesystem-internal"
+    )
 
 Then you can just use the regular filesystem API as documented. See
 <https://github.com/childoftheuniverse/filesystem/> for details.
 
 Alternatively, you can just use the anonymous in-memory file implementation:
 
-import (
-    internal "github.com/childoftehuniverse/filesystem-internal"
-)
+    import (
+        internal "github.com/childoftehuniverse/filesystem-internal"
+    )
 
 […]
 
-var file = internal.NewAnonymousFile()
-file.Write(…)
+    var file = internal.NewAnonymousFile()
+    file.Write(…)
