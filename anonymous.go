@@ -58,6 +58,15 @@ func (f *AnonymousFile) Write(ctx context.Context, data []byte) (int, error) {
 }
 
 /*
+Len returns the current total length of the anonymous file.
+This is not part of the standard file API, but it is certainly useful for
+testing.
+*/
+func (f *AnonymousFile) Len() int {
+	return len(f.contents)
+}
+
+/*
 Close resets the position. That's about all it does. This is so the same
 object can be reused in tests.
 */

@@ -25,6 +25,10 @@ func TestReadWrite(t *testing.T) {
 	if err != nil {
 		t.Errorf("Write returned an unexpected error: %v", err)
 	}
+	if file.Len() != len(TESTDATA) {
+		t.Errorf("Unexpected file length: %d (expected: %d)",
+			file.Len(), len(TESTDATA))
+	}
 	if n != len(TESTDATA) {
 		t.Errorf("Unexpected write length: %d (expected: %d)",
 			n, len(TESTDATA))
