@@ -67,6 +67,37 @@ func (f *AnonymousFile) Len() int {
 }
 
 /*
+Tell returns our current offset in the virtual file.
+*/
+func (f *AnonymousFile) Tell(ctx context.Context) (int64, error) {
+	return int64(f.position), nil
+}
+
+/*
+Seek changes the current position to the specified one.
+*/
+func (f *AnonymousFile) Seek(ctx context.Context, offset int64) error {
+	if offset < 0 || offset > int64(len(f.contents)) {
+		return io.EOF
+	}
+
+	f.position = int(offset)
+	return nil
+}
+
+/*
+Skip advances our position cursor by the specified amount of bytes.
+*/
+func (f *AnonymousFile) Skip(ctx context.Context, diff int64) error {
+	if diff < 0 || int64(f.position)+diff > int64(len(f.contents)) {
+		return io.EOF
+	}
+
+	f.position += int(diff)
+	return nil
+}
+
+/*
 Close resets the position. That's about all it does. This is so the same
 object can be reused in tests.
 */
